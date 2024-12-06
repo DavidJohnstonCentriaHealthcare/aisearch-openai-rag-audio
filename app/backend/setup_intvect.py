@@ -62,7 +62,7 @@ def load_azd_env():
 def setup_index(azure_credential, index_name, azure_search_endpoint, azure_storage_connection_string, azure_storage_container, azure_openai_embedding_endpoint, azure_openai_embedding_deployment, azure_openai_embedding_model, azure_openai_embeddings_dimensions):
     index_client = SearchIndexClient(azure_search_endpoint, azure_credential)
     indexer_client = SearchIndexerClient(azure_search_endpoint, azure_credential)
-
+    print("setup_index...")
     data_source_connections = indexer_client.get_data_source_connections()
     if index_name in [ds.name for ds in data_source_connections]:
         logger.info(f"Data source connection {index_name} already exists, not re-creating")
@@ -187,6 +187,7 @@ def setup_index(azure_credential, index_name, azure_search_endpoint, azure_stora
 def upload_documents(azure_credential, indexer_name, azure_search_endpoint, azure_storage_endpoint, azure_storage_container):
     indexer_client = SearchIndexerClient(azure_search_endpoint, azure_credential)
     # Upload the documents in /data folder to the blob storage container
+    print("upload_documents...")
     blob_client = BlobServiceClient(
         account_url=azure_storage_endpoint, credential=azure_credential,
         max_single_put_size=4 * 1024 * 1024
@@ -242,7 +243,7 @@ if __name__ == "__main__":
     AZURE_STORAGE_CONTAINER = os.environ["AZURE_STORAGE_CONTAINER"]
 
     azure_credential = AzureDeveloperCliCredential(tenant_id=os.environ["AZURE_TENANT_ID"], process_timeout=60)
-
+    
     setup_index(azure_credential,
         index_name=AZURE_SEARCH_INDEX, 
         azure_search_endpoint=AZURE_SEARCH_ENDPOINT,
@@ -258,3 +259,4 @@ if __name__ == "__main__":
         azure_search_endpoint=AZURE_SEARCH_ENDPOINT,
         azure_storage_endpoint=AZURE_STORAGE_ENDPOINT,
         azure_storage_container=AZURE_STORAGE_CONTAINER)
+    

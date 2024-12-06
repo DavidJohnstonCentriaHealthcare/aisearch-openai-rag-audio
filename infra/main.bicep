@@ -217,6 +217,7 @@ module acaBackend 'core/host/container-app-upsert.bicep' = {
       // For using managed identity to access Azure resources. See https://github.com/microsoft/azure-container-apps/issues/442
       AZURE_CLIENT_ID: acaIdentity.outputs.clientId
     }
+    
   }
 }
 
@@ -261,8 +262,8 @@ module openAi 'br/public:avm/res/cognitive-services/account:0.8.0' = if (!reuseE
       : '${abbrs.cognitiveServicesAccounts}${resourceToken}'
     sku: 'S0'
     deployments: openAiDeployments
-    disableLocalAuth: true
-    publicNetworkAccess: 'Enabled'
+    disableLocalAuth: false
+    publicNetworkAccess: 'Disabled'
     networkAcls: {}
     roleAssignments: [
       {

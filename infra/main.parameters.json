@@ -24,7 +24,7 @@
       "value": "${AZURE_OPENAI_RESOURCE_GROUP}"
     },
     "reuseExistingOpenAi": {
-      "value": "${AZURE_OPENAI_REUSE_EXISTING=false}"
+      "value": "${AZURE_OPENAI_REUSE_EXISTING=true}"
     },
     "openAiEndpoint": {
       "value": "${AZURE_OPENAI_ENDPOINT}"

@@ -10,18 +10,26 @@ services:
     host: containerapp
     docker:
       remoteBuild: true
+    auth:
+      enabled: true
+      platform:
+        identityProviders:
+          azureActiveDirectory:
+            enabled: true
+            registration:
+              clientId: ${AZURE_AD_CLIENT_ID}
 hooks:
-    postprovision:
-      windows:
-        shell: pwsh
-        run: ./scripts/write_env.ps1; ./scripts/setup_intvect.ps1
-        interactive: true
-        continueOnError: false
-      posix:
-        shell: sh
-        run: ./scripts/write_env.sh; ./scripts/setup_intvect.sh
-        interactive: true
-        continueOnError: false
+  postprovision:
+    windows:
+      shell: pwsh
+      run: ./scripts/write_env.ps1; ./scripts/setup_intvect.ps1
+      interactive: true
+      continueOnError: false
+    posix:
+      shell: sh
+      run: ./scripts/write_env.sh; ./scripts/setup_intvect.sh
+      interactive: true
+      continueOnError: false
 pipeline:
   variables:
     - AZURE_OPENAI_SERVICE
@@ -52,3 +60,5 @@ pipeline:
     - AZURE_CONTAINER_APP_NAME
     - AZURE_LOG_ANALYTICS
     - AZURE_CONTAINER_APPS_WORKLOAD_PROFILE
+    - AZURE_AD_CLIENT_ID
+    - AZURE_AD_CLIENT_SECRET
