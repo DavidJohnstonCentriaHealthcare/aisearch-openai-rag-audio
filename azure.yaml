@@ -18,6 +18,10 @@ services:
             enabled: true
             registration:
               clientId: ${AZURE_AD_CLIENT_ID}
+    managedIdentity: 
+      type: UserAssigned
+      user:
+        identityName: prodenv-aca-identity   # Ensure the correct managed identity is set
 hooks:
   postprovision:
     windows:
