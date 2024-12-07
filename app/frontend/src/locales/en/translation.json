@@ -1,6 +1,6 @@
 {
     "app": {
-        "title": "Centria Healthcare Voice Assistant",
+        "title": "Centria Voice Assistant",
         "footer": "Built with Azure AI Search + Azure OpenAI",
         "stopRecording": "Stop recording",
         "startRecording": "Start recording",
