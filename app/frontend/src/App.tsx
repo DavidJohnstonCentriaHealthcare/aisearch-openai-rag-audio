@@ -13,7 +13,9 @@ import useAudioPlayer from "@/hooks/useAudioPlayer";
 
 import { GroundingFile, ToolResult } from "./types";
 
-import logo from "./assets/logo.svg";
+//import logo from "./assets/logo.svg";
+// set logo manually
+const logo = "https://www.centriahealthcare.com/images/centria-healthcare-logo-new.svg";
 
 function App() {
     const [isRecording, setIsRecording] = useState(false);
